@@ -44,10 +44,9 @@ public class Date {
         if (i % 2 == 0) {
             return  31;
         }
-        if (i % 2 != 0) {
+        else  {
             return  30;
         }
-        return 0;
     }
 
     public int getDaysOfFebruary () {
