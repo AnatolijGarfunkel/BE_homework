@@ -41,11 +41,11 @@ public class Date {
         if (i == 1) {
             return getDaysOfFebruary();
         }
-        if (i % 2 == 0) {
-            return  31;
+        if (i <= 6) {
+            return  i % 2 == 0 ? 31 : 30;
         }
-        else  {
-            return  30;
+        else   {
+            return  i % 2 == 0 ? 30 : 31;
         }
     }
 
