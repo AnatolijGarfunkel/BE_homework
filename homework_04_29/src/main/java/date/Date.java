@@ -44,8 +44,13 @@ public class Date {
         if (i <= 6) {
             return  i % 2 == 0 ? 31 : 30;
         }
+<<<<<<< HEAD
         else   {
             return  i % 2 == 0 ? 30 : 31;
+=======
+        else {
+            return  30;
+>>>>>>> d94a09c7a6ee2476c7a6ead8f4f73f013ea33360
         }
     }
 
