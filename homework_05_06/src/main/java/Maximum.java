@@ -6,7 +6,7 @@ public class Maximum {
                             };
 
         if (isArray(numbers)) {
-            getMaximum(numbers);
+           System.out.println(getMaximum(numbers));
         }
         toPrint(numbers);
     }
