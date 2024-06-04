@@ -44,17 +44,15 @@ public class Main {
 
     public static List<Words> getPositions(String s) {
         Set<Words> words = new HashSet<>();
-        Set<String> string = new HashSet<>();
         List<Words> result = new ArrayList<>();
-        Words dummy = new Words("", new TreeSet<>(Arrays.asList(0)));
-        Words temp = new Words("", new TreeSet<>(Arrays.asList(0)));
+        Words temp;
         int position = 0;
 
         for (String data: s.split(" ")) {
-            words.add(new Words(data, new TreeSet<>(Arrays.asList(position))));
-            dummy = new Words(data, new TreeSet<>(Arrays.asList(position)));
+            words.add(new Words(data, new TreeSet<>()));
+            temp = new Words(data, new TreeSet<>());
             for (Words w: words) {
-                if (w.equals(dummy)) {
+                if (w.equals(temp)) {
                     temp = w;
                     temp.position.add(position);
                     words.add(temp);
