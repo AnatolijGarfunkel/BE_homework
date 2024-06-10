@@ -93,6 +93,11 @@ public class Main {
         return charsSet;
     }
 
+    /*
+    В буквальном смысле этого слова выстрадал это задание, поэтому не готов даже вставить комментарии, как я и что я
+    там сделал, но главное, что получилось. 
+     */
+
     public static Set<Set<String>> getWords (Set<Set<Character>> charSet, Set<String> strings) {
         Set<String> result;
         Set<Set<String>> endResult = new LinkedHashSet<>();
