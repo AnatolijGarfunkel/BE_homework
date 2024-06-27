@@ -1,8 +1,10 @@
+import java.util.AbstractMap;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -102,17 +104,38 @@ public class Main {
         воспользуйтесь Collectors.groupingBy и Collectors.maxBy
 */
 
-        System.out.println(5 + ")\n" +
-                emps.stream()
-                        .collect(
-                                Collectors.groupingBy(
-                                        e -> e.getPosition(),
-                                        Collectors.maxBy(Comparator.comparingInt(Emp::getAge))
+        Map<String,List<String>> map3;
+        map3 = emps.stream()
+                                .collect(
+                                        Collectors.groupingBy(
+                                                e -> e.getPosition(),
+                                                Collectors.maxBy(
+                                                        Comparator.comparingInt(Emp::getAge)
+                                                )
+                                        )
                                 )
-                        )
-                + "\n");
+                                .entrySet()
+                                .stream()
+                                .map(
+                                        pair -> new AbstractMap.SimpleEntry(
+                                                pair.getKey(),
+                                                Stream.of(
+                                                                pair.getValue().orElse(null).getName(),
+                                                                pair.getValue().orElse(null).getAge()
+                                                        )
+                                                        .toList()
+                                        )
+                                )
+                                .collect(
+                                        Collectors.toMap(
+                                                pair -> (String) pair.getKey(),
+                                                pair -> (List<String>) pair.getValue()
+                                        )
+                                );
 
-        // не понимаю, куда orElse вставить, что бы от Optional избавиться
+        System.out.println(5 + ")\n" + map3 + "\n");
+
+
 
 /*
         6)
@@ -120,17 +143,18 @@ public class Main {
 */
 
         // Map с возростом и частотой
-        Map<Integer, Long> map3;
-        map3 = emps.stream()
+        Map<Integer, Long> map4;
+        map4 = emps.stream()
                 .collect(
                         Collectors.groupingBy(
                                 age -> age.getAge(),
                                 Collectors.counting()
                         )
                 );
+
         // нахождение самой частой частоты
         int often = Math.toIntExact(
-                map3
+                map4
                         .values()
                         .stream()
                         .max(
@@ -144,7 +168,7 @@ public class Main {
 
         // вычленение возраста по частоте
         int age = 0;
-        for (Entry<Integer, Long> pair: map3.entrySet()) {
+        for (Entry<Integer, Long> pair: map4.entrySet()) {
             if (pair.getValue() == often)
                 age = pair.getKey();
         }
